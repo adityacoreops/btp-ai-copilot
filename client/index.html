@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>S/4HANA AI Copilot Hub</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <div class="glass-app">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <span class="icon-logo">✧</span>
+        <h2>S/4HANA Copilot</h2>
+      </div>
+      
+      <div class="search-box">
+        <input type="text" id="service-search" placeholder="Filter OData Services...">
+      </div>
+
+      <div class="service-panel-scroller">
+        <div id="services-list" class="list-container">
+          <p class="status-msg">Fetching S/4HANA Services...</p>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Dynamic Interface -->
+    <main class="main-content">
+      <header class="top-nav">
+        <div class="active-context-info">
+          <h1 id="selected-service-title">Choose a Service</h1>
+          <p id="selected-service-description">Please select an API to begin analyzing S/4HANA business data</p>
+        </div>
+      </header>
+
+      <section class="explorer-grid">
+        <!-- Schema & Entity Selection Panel -->
+        <div class="glass-card structure-panel">
+          <div class="card-header">
+            <h3>Entities &amp; Relations</h3>
+          </div>
+          <div class="entity-selector-wrapper">
+            <select id="entity-dropdown" disabled>
+              <option value="">-- No Entity Loaded --</option>
+            </select>
+          </div>
+          <div class="schema-scroller">
+            <table class="schema-table" id="schema-display-table">
+              <thead>
+                <tr>
+                  <th>Field</th>
+                  <th>Type</th>
+                  <th>Label</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td colspan="3" class="status-msg">No schema loaded. Choose a service.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- OData Live Database Table View -->
+        <div class="glass-card results-panel">
+          <div class="card-header">
+            <h3>Live OData Explorer</h3>
+            <span class="badge" id="records-counter">0 Rows</span>
+          </div>
+          <div class="table-scroller">
+            <table id="odata-results-table">
+              <thead id="results-table-head">
+                <tr>
+                  <th>Select an entity to retrieve live records</th>
+                </tr>
+              </thead>
+              <tbody id="results-table-body">
+                <tr>
+                  <td class="status-msg">Await database stream...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- Bottom Interactive Visualization Panel -->
+      <section class="glass-card analytics-panel">
+        <div class="card-header">
+          <h3>Generated Visualizations</h3>
+        </div>
+        <div class="chart-canvas-container">
+          <canvas id="analyticsChart"></canvas>
+        </div>
+      </section>
+    </main>
+
+    <!-- Right Chat Assistant Overlay -->
+    <aside class="chat-sidebar glass-card">
+      <div class="card-header bg-translucent">
+        <div class="chat-status-header">
+          <h3>AI Co-analyst</h3>
+          <span class="badge badge-success">Orchestrated</span>
+        </div>
+      </div>
+      
+      <div class="chat-scroller" id="chat-messages">
+        <div class="chat-msg system">
+          <p>Please select an API service and active entity in S/4HANA to contextually ground the AI conversation model.</p>
+        </div>
+      </div>
+
+      <div class="chat-input-wrapper">
+        <input type="text" id="user-input" placeholder="Ask a question about this S/4HANA collection..." disabled />
+        <button id="send-btn" disabled>Send</button>
+      </div>
+    </aside>
+  </div>
+
+  <script type="module" src="/js/app.js"></script>
+</body>
+</html>

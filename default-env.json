@@ -1,0 +1,11 @@
+{
+  "destinations": [
+    {
+      "name": "S4D",
+      "url": "http://saps4hana:8000",
+      "username": "coreopsai",
+      "password": "Admin@1234",
+      "forwardAuthToken": false
+    }
+  ]
+}
